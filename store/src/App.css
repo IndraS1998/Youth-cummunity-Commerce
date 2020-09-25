@@ -1,4 +1,4 @@
-:root{
+  :root{
   --mainBlue: #202072;
   --lightBlue:#009ffd;
   --mainWhite:#fff;
@@ -15,6 +15,9 @@ body{
 }
 .height-80{
   min-height: 77vh;
+}
+.height-40{
+  min-height: 50vh;
 }
 .images{
   height:145px;

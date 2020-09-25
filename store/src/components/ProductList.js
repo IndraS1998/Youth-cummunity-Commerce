@@ -9,20 +9,22 @@ import LoadingSpinner from "./ui/LoadingSpinner";
 const ProductList = () =>{
     //making use of the useContext hook to consume the context we created
     const message = useContext(ProductContext);
+    const {items} = message
     const [category,setCategory] = useState();
 
-    if(message.items){
+    if(items){
         return(
             <div>
                 { message.isLoading && <LoadingSpinner asOverlay/>}
                 <div className="d-flex align-items-center justify-content-center flex-row">
                     <ProductButton onClick={()=>{
-                        const categories = [...new Set(message.items.map(item=>item.category))];
-                        console.log(categories);
+                        //const categories = [...new Set(message.items.map(item=>item.category))];
+                        //console.log(categories);
                     }}>
                         <span className="mr-2"><i className="fa fa-mobile" aria-hidden="true" /></span>Mobile Phone
                     </ProductButton>
-                    <ProductButton>
+                    <ProductButton onClick={()=>{
+                    }}>
                         <span className="mr-2"><i className="fa fa-male" aria-hidden="true" /></span><span className="mr-2"><i className="fa fa-female" aria-hidden="true" /></span>Clothing
                     </ProductButton>
                     <ProductButton>Others</ProductButton>
@@ -31,7 +33,7 @@ const ProductList = () =>{
                     <div className="container">
                         <Title name="our" title="products"/>
                         <div className="row">
-                            {message.items.map(product => {
+                            {items.map(product => {
                                 return <Product
                                     product={product} key={product.id} image={product.image} id={product.id}
                                     name={product.name} inCart={product.inCart} price={product.price}
