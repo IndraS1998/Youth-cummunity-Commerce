@@ -1,0 +1,9 @@
+.blue{
+    background-color: var(--mainBlue);
+}
+.red{
+    background-color: var(--mainWhite);
+}
+.admin{
+    min-height: 80vh;
+}

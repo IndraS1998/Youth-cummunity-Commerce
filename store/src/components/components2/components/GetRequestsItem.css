@@ -1,0 +1,7 @@
+.main{
+    background-color: var(--myWhite);
+}
+.sub{
+    background-color: var(--mainBlue);
+    color: white;
+}
