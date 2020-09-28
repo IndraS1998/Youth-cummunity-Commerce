@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Product = props =>{
     const {id,image,price,inCart} = props;
     const message = useContext(ProductContext);
-    const {handleDetail,addToCart,onOpenModal,} = message;
+    const {handleDetail,addToCart,onOpenModal} = message;
 
     return(
         <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3" >

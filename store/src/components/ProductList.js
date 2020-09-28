@@ -5,8 +5,6 @@ import Product from "./Product";
 import Title from "./components2/Title";
 import {ProductContext} from "../context";
 import LoadingSpinner from "./ui/LoadingSpinner";
-import Clothing from "./components2/product components/Clothing";
-import Devices from "./components2/product components/Devices";
 
 const ProductList = () =>{
     //making use of the useContext hook to consume the context we created
@@ -25,7 +23,7 @@ const ProductList = () =>{
             case "clothing":
                 setDetailItems(items.filter(item => item.category == 'clothing'))
                 return setCloth(true);
-            case "oaccessories":
+            case "accessories":
                 setDetailItems(items.filter(item => item.category == 'accessories'))
                 return setAccessories(true);
             default:
@@ -37,13 +35,14 @@ const ProductList = () =>{
         return(
             <div>
                 { message.isLoading && <LoadingSpinner asOverlay/>}
-                <ProductButton>
+                <ProductButton onClick ={()=>{dispatch({type:"devices"})}}>
                     <span className="mr-2"><i className="fa fa-mobile" aria-hidden="true" /></span>                
                 </ProductButton>
-                <ProductButton> 
+                <ProductButton onClick ={()=>{dispatch({type:"clothing"})}}> 
                     <span className="mr-2"><i className="fa fa-mobile" aria-hidden="true" /></span>                
                 </ProductButton>
-                <ProductButton>Others</ProductButton>
+                <ProductButton onClick ={()=>{dispatch({type:"accessories"})}}>Accessories</ProductButton>
+                <ProductButton onClick ={()=>{}}>Other</ProductButton>
                 <div className="py-3">
                         <div className="container">
                             <Title name="our" title="products"/>
@@ -55,7 +54,7 @@ const ProductList = () =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
                                                 name={product.name} inCart={product.inCart} price={product.price}
-                                            />
+                                                        />
                                             })
                                         }
                                         if(cloth){
@@ -63,7 +62,7 @@ const ProductList = () =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
                                                 name={product.name} inCart={product.inCart} price={product.price}
-                                            />
+                                                        />
                                             })
                                         }
                                         if(accessories){
@@ -71,7 +70,7 @@ const ProductList = () =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
                                                 name={product.name} inCart={product.inCart} price={product.price}
-                                            />
+                                                        />
                                             })
                                         }
                                         else{
@@ -79,7 +78,7 @@ const ProductList = () =>{
                                                 return <Product
                                                     product={product} key={product.id} image={product.image} id={product.id}
                                                     name={product.name} inCart={product.inCart} price={product.price}
-                                                />
+                                                        />
                                             })
                                         }
     
