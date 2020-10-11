@@ -97,5 +97,18 @@ const ProductButton = styled.div`
         border:0.05rem solid var(--mainRed);
     }
  `;
+ const AccesoriesButton = styled.div`
+    color:var(--mainOrange);
+    border-radius:1rem;
+    cursor:pointer;
+    margin:1.3rem 0.7rem;
+    padding: 0.2rem 0.2rem;
+    transition:all 1s ease-in-out;
+    &:hover{
+        color:var(--mainRed);
+        border:0.05rem solid var(--mainRed);
+    }
+ 
+ `
 
-export {ButtonContainer,BodyButton,EasyButton,CartButton,SecondaryButton,ProductButton}
+export {AccesoriesButton,ButtonContainer,BodyButton,EasyButton,CartButton,SecondaryButton,ProductButton}
