@@ -106,7 +106,6 @@ const ProductButton = styled.div`
     transition:all 1s ease-in-out;
     &:hover{
         color:var(--mainRed);
-        border:0.05rem solid var(--mainRed);
     }
  
  `

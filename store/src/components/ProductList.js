@@ -14,18 +14,34 @@ const ProductList = () =>{
     const [devices,setDevices] = useState(false);
     const [cloth,setCloth] = useState(false);
     const [accessories,setAccessories] = useState(false);
+    const [other,setOther] = useState(false);
 
     const [state,dispatch] = useReducer(function reducer(state,action){
         switch(action.type){
             case "devices":
+                setCloth(false);
+                setAccessories(false);
+                setOther(false);
                 setDetailItems(items.filter(item => item.category == 'devices'))
                 return setDevices(true);
             case "clothing":
+                setDevices(false);
+                setAccessories(false);
+                setOther(false);
                 setDetailItems(items.filter(item => item.category == 'clothing'))
                 return setCloth(true);
             case "accessories":
+                setDevices(false);
+                setCloth(false);
+                setOther(false);
                 setDetailItems(items.filter(item => item.category == 'accessories'))
                 return setAccessories(true);
+            case "other":
+                setDevices(false);
+                setCloth(false);
+                setAccessories(false);
+                setDetailItems(items.filter(item => item.category == 'other'))
+                return setOther(true);    
             default:
                 return state
         }
@@ -43,9 +59,9 @@ const ProductList = () =>{
                         <span ><i className="fas fa-tshirt" aria-hidden="true" /></span>
                     </AccesoriesButton>
                     <AccesoriesButton onClick ={()=>{dispatch({type:"accessories"})}}>
-                        <span ><i className="fas fa-watch" aria-hidden="true"></i></span>
+                        <span ><i className="fas fa-clock" aria-hidden="true"></i></span>
                     </AccesoriesButton>
-                    <AccesoriesButton onClick ={()=>{}}>Other</AccesoriesButton>
+                    <AccesoriesButton onClick ={()=>{dispatch({type:"other"})}}> <i className="fas fa-caret-down"></i></AccesoriesButton>
             
                 </div>
                 <div className="py-3 mt-5">
@@ -54,8 +70,8 @@ const ProductList = () =>{
                             <div className="row">
                                 {
                                     function (){
-                                        
                                         if(devices){
+                                            console.log(detailItems, items)
                                             detailItems.map(product =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
@@ -64,6 +80,7 @@ const ProductList = () =>{
                                             })
                                         }
                                         if(cloth){
+                                            console.log(detailItems)
                                             detailItems.map(product =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
@@ -72,6 +89,7 @@ const ProductList = () =>{
                                             })
                                         }
                                         if(accessories){
+                                            console.log(detailItems)
                                             detailItems.map(product =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
@@ -79,7 +97,8 @@ const ProductList = () =>{
                                                         />
                                             })
                                         }
-                                        else{
+                                        if(other){
+                                            console.log(detailItems)
                                             items.map(product => {
                                                 return <Product
                                                     product={product} key={product.id} image={product.image} id={product.id}
@@ -87,7 +106,6 @@ const ProductList = () =>{
                                                         />
                                             })
                                         }
-    
                                     }()
                                }
                             </div>

@@ -64,7 +64,15 @@ const CreateProduct = () =>{
                     <input type="text" className="form-control" onChange={event => onSetName(event)} placeholder="name"/>
                 </div>
                 <div className="form-group">
-                    <input type="text" className="form-control" onChange={event => onSetCategory(event)} placeholder="category"/>
+                    <div className="dropdown show">
+                        <BodyButton className="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></BodyButton>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <BodyButton className="dropdown-item" onClick={()=>setCategory("devices")}> device</BodyButton>
+                            <BodyButton className="dropdown-item" onClick={()=>setCategory("accessories")}>accessories</BodyButton>
+                            <BodyButton className="dropdown-item" onClick={()=>setCategory("clothing")}>cloth</BodyButton>
+                            <BodyButton className="dropdown-item" onClick={()=>setCategory("other")}>other</BodyButton>
+                        </div>
+                    </div>
                 </div>
                 <div className="form-group">
                     <textarea  className="form-control"  placeholder="description" onChange={event => onSetDescription(event)}/>
