@@ -4,17 +4,16 @@ import ImageUpload from "../../ui/ImageUpload";
 import {ProductContext} from "../../../context";
 import {BodyButton} from "../../Button";
 import LoadingSpinner from "../../ui/LoadingSpinner";
+import Category from "./Category"
 
 const CreateProduct = () =>{
     const message = useContext(ProductContext);
 
     const [name,setName] = useState('');
-    const [category,setCategory] = useState('');
     const [description,setDescription] = useState('');
     const [price,setPrice] = useState('');
 
     const onSetName = e =>setName(e.target.value);
-    const onSetCategory = e => setCategory(e.target.value);
     const onSetDescription = e => setDescription(e.target.value);
     const onSetPrice = e => setPrice(e.target.value);
 
@@ -24,12 +23,12 @@ const CreateProduct = () =>{
             <form onSubmit={async e =>{
                 e.preventDefault();
                 message.setIsLoading(true);
-                if(name && description && message.file && category && price){
+                if(name && description && message.file && message.category.length !== 0 && price){
                     const formData = new FormData();
                     formData.append('name',name);
                     formData.append('price',price);
                     formData.append('description',description);
-                    formData.append('category',category);
+                    formData.append('category',message.category);
                     formData.append('image',message.file);
                     try{
                         const response = await fetch('http://localhost:5000/products/new_product',{
@@ -63,16 +62,8 @@ const CreateProduct = () =>{
                 <div className="form-group">
                     <input type="text" className="form-control" onChange={event => onSetName(event)} placeholder="name"/>
                 </div>
-                <div className="form-group">
-                    <div className="dropdown show">
-                        <BodyButton className="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></BodyButton>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <BodyButton className="dropdown-item" onClick={()=>setCategory("devices")}> device</BodyButton>
-                            <BodyButton className="dropdown-item" onClick={()=>setCategory("accessories")}>accessories</BodyButton>
-                            <BodyButton className="dropdown-item" onClick={()=>setCategory("clothing")}>cloth</BodyButton>
-                            <BodyButton className="dropdown-item" onClick={()=>setCategory("other")}>other</BodyButton>
-                        </div>
-                    </div>
+                <div >
+                    <Category/>
                 </div>
                 <div className="form-group">
                     <textarea  className="form-control"  placeholder="description" onChange={event => onSetDescription(event)}/>

@@ -107,7 +107,7 @@ const ProductButton = styled.div`
     &:hover{
         color:var(--mainRed);
     }
- 
+    
  `
 
 export {AccesoriesButton,ButtonContainer,BodyButton,EasyButton,CartButton,SecondaryButton,ProductButton}

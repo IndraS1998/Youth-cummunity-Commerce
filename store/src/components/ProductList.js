@@ -22,25 +22,25 @@ const ProductList = () =>{
                 setCloth(false);
                 setAccessories(false);
                 setOther(false);
-                setDetailItems(items.filter(item => item.category == 'devices'))
+                setDetailItems(items.filter(item => item.category === 'device'))
                 return setDevices(true);
             case "clothing":
                 setDevices(false);
                 setAccessories(false);
                 setOther(false);
-                setDetailItems(items.filter(item => item.category == 'clothing'))
+                setDetailItems(items.filter(item => item.category === 'Dress'))
                 return setCloth(true);
             case "accessories":
                 setDevices(false);
                 setCloth(false);
                 setOther(false);
-                setDetailItems(items.filter(item => item.category == 'accessories'))
+                setDetailItems(items.filter(item => item.category === 'accessoires'))
                 return setAccessories(true);
             case "other":
                 setDevices(false);
                 setCloth(false);
                 setAccessories(false);
-                setDetailItems(items.filter(item => item.category == 'other'))
+                setDetailItems(items.filter(item => item.category === 'other'))
                 return setOther(true);    
             default:
                 return state
@@ -71,7 +71,6 @@ const ProductList = () =>{
                                 {
                                     function (){
                                         if(devices){
-                                            console.log(detailItems, items)
                                             detailItems.map(product =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
@@ -80,7 +79,6 @@ const ProductList = () =>{
                                             })
                                         }
                                         if(cloth){
-                                            console.log(detailItems)
                                             detailItems.map(product =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
@@ -89,7 +87,6 @@ const ProductList = () =>{
                                             })
                                         }
                                         if(accessories){
-                                            console.log(detailItems)
                                             detailItems.map(product =>{
                                                 return <Product
                                                 product={product} key={product.id} image={product.image} id={product.id}
@@ -98,7 +95,6 @@ const ProductList = () =>{
                                             })
                                         }
                                         if(other){
-                                            console.log(detailItems)
                                             items.map(product => {
                                                 return <Product
                                                     product={product} key={product.id} image={product.image} id={product.id}

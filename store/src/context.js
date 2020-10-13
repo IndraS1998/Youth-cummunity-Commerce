@@ -39,6 +39,8 @@ const ProductProvider = ({children}) =>{
     const [file,setFile] = useState();
     const [token,setToken] = useState(false);
     const [queryString,setQueryString] = useState('');
+    const [selectCategory,setSelectCategory] = useState(false);
+    const [category,setCategory] = useState('');
 
     // actually setting the state directly to the storeProduct which is bad as editing the storeProducts manually will also edit the state
     //but with the setProducts method, its a new set of values instead of copying them
@@ -386,16 +388,33 @@ const ProductProvider = ({children}) =>{
         setModalOpen(false);
 
     };
+
+    const onOpenCategoryModal = () =>{
+        setSelectCategory(true);
+        setModalOpen(true);
+    }
+
+    const onCloseCategoryModal = () =>{
+        setSelectCategory(false);
+        setModalOpen(false);
+    }
+
+    const settingCategoryToDevice = () =>setCategory('device');
+    const settingCategoryToDress = () =>setCategory('Dress');
+    const settingCategoryToAccessoires = () =>setCategory('accessoires');
+    const settingCategoryToOther = () =>setCategory('other');
+
     return (
         //implementation of the ProductContext.Provider but since we already used object destructuring, we only call Provider
         <div>
             <Provider value = {{
-                modalOpen,modalProduct,detail,cart,cartSubTotal,requests,setRequests,description,phone,onSetPhone,email,onSetEmail,
+                modalOpen,modalProduct,detail,cart,cartSubTotal,requests,setRequests,description,phone,onSetPhone,email,onSetEmail,selectCategory,
                 onSetDescription,items,deleteP,setDeleteP,onPerformDelete,onCLoseDelete,file,setFile,onGetRequests,onSetQueryString,queryString,
-                onOpenDeleteModal,mkReq,setMkReq,purchaseMade,setPurchaseMade,addToTotals,onMakePurchase,token,setToken,
+                onOpenDeleteModal,mkReq,setMkReq,purchaseMade,setPurchaseMade,addToTotals,onMakePurchase,token,setToken,onOpenCategoryModal,onCloseCategoryModal,
                 location,onSetLocation,onCloseRequestModal,onDeleteRequest,deleteRequest,setDeleteRequest,onCloseDeleteRequestModal,onGetProducts,
                 cartTax,cartTotal,setCart,error,setError,isLoading,setIsLoading,setModalOpen,edit,prices,onSetPrice,setEdit,setId,setItems,
-                handleDetail,addToCart,onOpenModal,onCloseModal,increment,decrement,removeItem,clearCart,clearError,onPerformEdit,closeEdit
+                handleDetail,addToCart,onOpenModal,onCloseModal,increment,decrement,removeItem,clearCart,clearError,onPerformEdit,closeEdit,
+                settingCategoryToDevice,settingCategoryToDress,settingCategoryToAccessoires,settingCategoryToOther,category
             }} >
                 {children}
             </Provider>

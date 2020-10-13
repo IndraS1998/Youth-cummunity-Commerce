@@ -4,9 +4,9 @@ import styled from "styled-components";
 import {ButtonContainer,EasyButton} from "./Button";
 import {Link} from "react-router-dom";
 
-const Modal = props =>{
+const Modal = () =>{
    const message = useContext(ProductContext);
-   const {onCloseModal,modalOpen,modalProduct,error,description,onSetDescription,onSetPrice} = message;
+   const {onCloseModal,selectCategoty,modalOpen,modalProduct,error,description,onSetDescription,onSetPrice,onCloseCategoryModal} = message;
    const {name,image,price} = modalProduct;
 
 
@@ -74,6 +74,7 @@ const Modal = props =>{
                             </ModalContainer>
                             )
                     }
+                   
                     return (
                         <ModalContainer>
                             <div className="container">
