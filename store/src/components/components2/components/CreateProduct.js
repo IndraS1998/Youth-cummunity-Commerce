@@ -12,10 +12,18 @@ const CreateProduct = () =>{
     const [name,setName] = useState('');
     const [description,setDescription] = useState('');
     const [price,setPrice] = useState('');
+    const [categorySelected,setCategorySelected] = useState(false);
 
     const onSetName = e =>setName(e.target.value);
     const onSetDescription = e => setDescription(e.target.value);
     const onSetPrice = e => setPrice(e.target.value);
+
+    const onClearEverything = () =>{
+        setDescription('');
+        setName('');
+        setPrice('');
+        setCategorySelected(false);
+    }
 
     return(
         <div className="height-80 my-3">
@@ -46,7 +54,9 @@ const CreateProduct = () =>{
                         }
                         await message.onGetProducts();
                         message.setIsLoading(false);
-                        alert('item successfully created')
+                        alert('item successfully created');
+                        onClearEverything();
+
                     }catch (e){
                         message.setError(e.message);
                         message.setModalOpen(true);
@@ -63,7 +73,7 @@ const CreateProduct = () =>{
                     <input type="text" className="form-control" onChange={event => onSetName(event)} placeholder="name"/>
                 </div>
                 <div >
-                    <Category/>
+                    <Category categorySelected={categorySelected} setCategorySelected={setCategorySelected}/>
                 </div>
                 <div className="form-group">
                     <textarea  className="form-control"  placeholder="description" onChange={event => onSetDescription(event)}/>

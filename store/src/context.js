@@ -257,7 +257,7 @@ const ProductProvider = ({children}) =>{
             setError(e.message);
             setModalOpen(true);
         }
-    };
+};
 
 
     const onSetDescription = e => setDescription(e.target.value);

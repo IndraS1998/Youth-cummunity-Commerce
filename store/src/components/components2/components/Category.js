@@ -3,11 +3,11 @@ import React,{useContext,useState} from 'react';
 import {ProductContext} from '../../../context';
 import {SecondaryButton} from '../../Button';
 
-const Category = () => {
+const Category = props => {
 
     const message = useContext(ProductContext);
-    const [categorySelected,setCategorySelected] = useState(false);
     const {settingCategoryToDevice,settingCategoryToDress,settingCategoryToAccessoires,settingCategoryToOther,category} = message;
+    const {categorySelected,setCategorySelected} = props;
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center">
